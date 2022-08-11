@@ -1,7 +1,9 @@
 package com.userfront.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import com.userfront.domain.Recipient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.userfront.domain.User;
 import com.userfront.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")

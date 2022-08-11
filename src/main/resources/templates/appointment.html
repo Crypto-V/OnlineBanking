@@ -13,10 +13,10 @@
 
                 <div class="form-group">
                     <label for="dateString">Pick a Date and Time:</label>
-                    <div class="input-append date form_datetime input-group" data-date="2016-10-21T15:25:00Z">
+                    <div class="input-append date form_datetime input-group" data-date="2021-08-15T15:25:00Z">
                         <input class="form-control" type="text" value="" readonly="readonly"
                                th:value="${dateString}" name="dateString"
-                               id="dateString" required="required"/>
+                               id="dateString" required/>
                         <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
                         <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                     </div>
@@ -26,7 +26,7 @@
                     <label for="location">Pick a location:</label>
                     <select class="form-control" th:value="${appointment.location}" name="location" id="location"
                             >
-                        <option disabled="disabled" selected="selected" > -- select the location --</option>
+                        <option disabled="disabled" selected="selected"  > -- select the location --</option>
                         <option>London</option>
                         <option>Swindon</option>
                         <option>Luton</option>

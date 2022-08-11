@@ -14,27 +14,27 @@
                 <div class="form-group">
                     <label for="recipientName">Name</label>
                     <input type="text" class="form-control" th:value="${recipient.name}" name="name"
-                           id="recipientName" placeholder="Name"/>
+                           id="recipientName" placeholder="Name" required/>
                 </div>
                 <div class="form-group">
                     <label for="recipientEmail">Email</label>
                     <input type="email" class="form-control" th:value="${recipient.email}" name="email"
-                           id="recipientEmail" placeholder="Email"/>
+                           id="recipientEmail" placeholder="Email" required/>
                 </div>
                 <div class="form-group">
                     <label for="recipientPhone">Phone</label>
-                    <input type="text" class="form-control" th:value="${recipient.phone}" name="phone"
-                           id="recipientPhone" placeholder="Phone"/>
+                    <input type="tel" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" class="form-control" th:value="${recipient.phone}" name="phone"
+                           id="recipientPhone" placeholder="Phone" required/>
                 </div>
                 <div class="form-group">
                     <label for="recipientAccountNumber">Account Number</label>
-                    <input type="text" class="form-control" th:value="${recipient.accountNumber}"
-                           name="accountNumber" id="recipientAccountNumber" placeholder="Account Number"/>
+                    <input type="tel" pattern="[1-9]{1}[0-9]{9}" class="form-control" th:value="${recipient.accountNumber}"
+                           name="accountNumber" id="recipientAccountNumber" placeholder="Account Number" required/>
                 </div>
                 <div class="form-group">
                     <label for="recipientDescription">Description</label>
                     <textarea class="form-control" th:value="${recipient.description}" name="description"
-                              id="recipientDescription" placeholder="Description" th:text="${recipient.description}"></textarea>
+                              id="recipientDescription" placeholder="Description" th:text="${recipient.description}" required></textarea>
                 </div>
 
                 <input type="hidden"
@@ -63,7 +63,7 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #e3e4e4">
                 <tr data-th-each="eachRecipient : ${recipientList}">
                     <td><a data-th-text="${eachRecipient.name}" th:href="@{/transfer/recipient/edit?recipientName=}+${eachRecipient.name}">...</a></td>
                     <td data-th-text="${eachRecipient.email}">...</td>

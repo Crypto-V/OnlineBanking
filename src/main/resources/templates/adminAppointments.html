@@ -16,17 +16,17 @@
                     <th>Description</th>
                     <th>Confirmed?</th>
                     <th>Action</th>
-                    <th></th>
+
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #e3e4e4">
                 <tr data-th-each="eachAppointment : ${appointments}">
                     <td data-th-text="${eachAppointment.id}">...</td>
                     <td data-th-text="${eachAppointment.date}">...</td>
                     <td data-th-text="${eachAppointment.location}">...</td>
                     <td data-th-text="${eachAppointment.description}">...</td>
                     <td data-th-text="${eachAppointment.confirmed}">...</td>
-                    <td><a th:href="@{/transfer/recipient/delete?recipientName=}+${eachRecipient.name}">confirm</a></td>
+                    <td><a th:href="@{#}">confirm</a></td>
                 </tr>
                 </tbody>
             </table>

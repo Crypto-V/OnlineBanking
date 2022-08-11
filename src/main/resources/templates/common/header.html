@@ -49,16 +49,19 @@
                     <a class="navbar-brand page-scroll" th:href="@{/userFront}">Home</a>
                 </div>
             </div>
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand " th:href="@{/adminFront}">Users</a>
-                <a class="navbar-brand " th:href="@{/adminAppointments}">Appointments</a>
+            <div sec:authorize="hasRole('ADMIN')">
+                <!--                Content for Administrators-->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand " th:href="@{/adminFront}">Users</a>
+                    <a class="navbar-brand " th:href="@{/adminAppointments}">Appointments</a>
+                </div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

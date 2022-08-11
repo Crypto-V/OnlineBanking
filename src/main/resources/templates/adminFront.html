@@ -17,18 +17,18 @@
                     <th>Saving Account</th>
                     <th>Status</th>
                     <th>Action</th>
-                    <th></th>
+
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #e3e4e4">
                 <tr data-th-each="eachUser : ${users}">
                     <td data-th-text="${eachUser.username}">..</td>
                     <td data-th-text="${eachUser.email}">...</td>
                     <td data-th-text="${eachUser.phone}">...</td>
-                    <td data-th-text="${eachUser.primaryAccount}">...</td>
-                    <td data-th-text="${eachUser.savingsAccount}">...</td>
+                    <td data-th-text="${eachUser.primaryAccount.getAccountBalance()}">...</td>
+                    <td data-th-text="${eachUser.savingsAccount.getAccountBalance()}">...</td>
                     <td data-th-text="${eachUser.enabled}">...</td>
-                    <td><a th:href="@{/transfer/user/delete?userName=}+${eachUser.username}">enable</a></td>
+                    <td><a th:href="@{#}">disable</a></td>
                 </tr>
                 </tbody>
             </table>

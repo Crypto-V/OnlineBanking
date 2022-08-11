@@ -1,11 +1,12 @@
 package com.userfront.controller;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.userfront.domain.Appointment;
+import com.userfront.domain.*;
 import com.userfront.service.AppointmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.userfront.domain.security.dao.RoleDao;
-import com.userfront.domain.PrimaryAccount;
-import com.userfront.domain.SavingsAccount;
-import com.userfront.domain.User;
 import com.userfront.domain.security.UserRole;
 import com.userfront.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -85,19 +84,33 @@ public class HomeController {
         model.addAttribute("primaryAccount", primaryAccount);
         model.addAttribute("savingsAccount", savingsAccount);
 
+
         return "userFront";
     }
 
     @RequestMapping("/adminFront")
-    public String adminFront(Principal principal, Model model) {
-        User user = userService.findByUsername("vasika");
-
+    public String adminFront(Model model) {
+//        User user = userService.findByUsername(principal.getName());
         List<User> users = userService.getAllUsers();
-        List<Appointment> appointments = appointmentService.findAll();
-
+//        List<Appointment> appointments = appointmentService.findAll();
         model.addAttribute("users", users);
-        model.addAttribute("appointments", appointments);
+//        model.addAttribute("appointments", appointments);
+
 
         return "adminFront";
     }
+
+    @RequestMapping("/adminAppointments")
+    public String appointments( Model model) {
+//        User user = userService.findByUsername("vasika");
+
+//        List<User> users = userService.getAllUsers();
+        List<Appointment> appointments = appointmentService.findAll();
+
+//        model.addAttribute("users", users);
+        model.addAttribute("appointments", appointments);
+
+        return "adminAppointments";
+    }
+
 }
