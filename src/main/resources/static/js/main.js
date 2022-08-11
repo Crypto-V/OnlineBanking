@@ -1,3 +1,13 @@
+var alerted = localStorage.getItem('alerted') || '';
+if (alerted != 'yes') {
+    alert("This is the University Project and all the information including the funds are not real, " +
+        "there are no real money transactions performed on this web platform. \n" +
+        "Any information passed in will be confidentially stored  " +
+        "and are intended solely for the use of Verejan Vasile and University of Ulster. \n" +
+        "If you dont feel secure to continue please close the page otherwise click the ok button and lets do it! ");
+    localStorage.setItem('alerted','yes');
+}
+
 (function ($) {
     $.toggleShowPassword = function (options) {
         var settings = $.extend({
