@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<title th:text="${message}"></title>
+<head th:replace="common/header :: navbar"/>
+<br><br>
+<div class="container main" style="width: 40rem;background-color: lightgrey;border: 2px solid #d84b4b;">
+  <h1 style="font-size: 3rem;color: red;text-align: center;"> Ooops something went wrong!!</h1>
+  <h1 th:text="${status}" style="font-size: 3rem;color: red;text-align: center;"></h1>
+</div>
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

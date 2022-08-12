@@ -19,8 +19,8 @@
 
                 <div class="form-group">
                     <label>2. Please specify the amount you would like to deposit: </label>
-                    <span class="input-group-addon">Amount $</span>
-                    <input th:value="${amount}" type="number" min="10" name="amount" id="amount" class="form-control" aria-label="Amount (to the nearest dollar)" required/>
+                    <span class="input-group-addon">Amount ₤</span>
+                    <input th:value="${amount}" type="number" min="10" max="1000" name="amount" id="amount" class="form-control" aria-label="Amount (to the nearest dollar)" required/>
                 </div>
 
                 <input type="hidden"
