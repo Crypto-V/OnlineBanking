@@ -19,7 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.userfront.domain.security.Authority;
+import com.userfront.domain.security.Auth;
 import com.userfront.domain.security.UserRole;
 
 @Entity
@@ -176,7 +176,7 @@ public class User implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
+        userRoles.forEach(ur -> authorities.add(new Auth(ur.getRole().getName())));
         return authorities;
     }
 
