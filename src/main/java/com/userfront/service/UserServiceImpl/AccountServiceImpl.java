@@ -20,9 +20,9 @@ import com.userfront.service.TransactionService;
 @Service
 public class AccountServiceImpl implements AccountService {
 	
-	private static int nextAccountNumber = 11223145;
-    private int min = 0;
-    private int max = 12000000;
+	private static final int nextAccountNumber = 11223145;
+    private final int min = 0;
+    private final int max = 12000000;
 
     private final PrimaryAccountDao primaryAccountDao;
     private final SavingsAccountDao savingsAccountDao;
