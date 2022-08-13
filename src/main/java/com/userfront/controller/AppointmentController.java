@@ -8,6 +8,7 @@ import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,7 +37,7 @@ public class AppointmentController {
         return "appointment";
     }
 
-    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createAppointmentPost(@ModelAttribute("appointment") Appointment appointment, @ModelAttribute("dateString") String date, Model model, Principal principal) throws ParseException {
 
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -49,6 +50,13 @@ public class AppointmentController {
         appointmentService.createAppointment(appointment);
 
         return "redirect:/userFront";
+    }
+
+    @RequestMapping(value = "/{id}/confirm",  method = RequestMethod.GET)
+    public String confirmAppointment(@PathVariable("id") Long id) {
+        appointmentService.confirmAppointment(id);
+
+        return "redirect:/adminAppointments";
     }
 
 

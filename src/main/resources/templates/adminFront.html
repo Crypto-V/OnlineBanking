@@ -28,7 +28,12 @@
                     <td data-th-text="${eachUser.primaryAccount.getAccountBalance()}">...</td>
                     <td data-th-text="${eachUser.savingsAccount.getAccountBalance()}">...</td>
                     <td data-th-text="${eachUser.enabled}">...</td>
-                    <td><a th:href="@{#}">disable</a></td>
+                    <td th:if="${!eachUser.enabled}">
+                        <a th:href="@{/user/{username}/enable(username=${eachUser.username})}">enable</a>
+                    </td>
+                    <td th:if="${eachUser.enabled}">
+                        <a th:href="@{/user/{username}/disable(username=${eachUser.username})}">disable</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -7,7 +7,7 @@
     <div class="row">
         <h3>List of Appointments</h3>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
+            <table class="table table-bordered table-hover table-striped" >
                 <thead>
                 <tr>
                     <th>Appointment ID</th>
@@ -20,13 +20,15 @@
                 </tr>
                 </thead>
                 <tbody style="background-color: #e3e4e4">
-                <tr data-th-each="eachAppointment : ${appointments}">
+                <tr th:if="${!eachAppointment.confirmed}" data-th-each="eachAppointment : ${appointments}">
                     <td data-th-text="${eachAppointment.id}">...</td>
                     <td data-th-text="${eachAppointment.date}">...</td>
                     <td data-th-text="${eachAppointment.location}">...</td>
                     <td data-th-text="${eachAppointment.description}">...</td>
                     <td data-th-text="${eachAppointment.confirmed}">...</td>
-                    <td><a th:href="@{#}">confirm</a></td>
+                    <td>
+                        <a th:href="@{/appointment/{id}/confirm(id=${eachAppointment.id})}">confirm</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

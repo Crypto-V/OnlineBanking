@@ -2,13 +2,8 @@ package com.userfront.resource;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.userfront.domain.PrimaryTransaction;
 import com.userfront.domain.SavingsTransaction;
@@ -18,14 +13,16 @@ import com.userfront.service.UserService;
 
 @RestController
 @RequestMapping("/api")
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class UserResource {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final TransactionService transactionService;
 
-    @Autowired
-    private TransactionService transactionService;
+    public UserResource(UserService userService, TransactionService transactionService) {
+        this.userService = userService;
+        this.transactionService = transactionService;
+    }
 
     @RequestMapping(value = "/user/all", method = RequestMethod.GET)
     public List<User> userList() {
@@ -40,15 +37,5 @@ public class UserResource {
     @RequestMapping(value = "/user/savings/transaction", method = RequestMethod.GET)
     public List<SavingsTransaction> getSavingsTransactionList(@RequestParam("username") String username) {
         return transactionService.findSavingsTransactionList(username);
-    }
-
-    @RequestMapping("/user/{username}/enable")
-    public void enableUser(@PathVariable("username") String username) {
-        userService.enableUser(username);
-    }
-
-    @RequestMapping("/user/{username}/disable")
-    public void diableUser(@PathVariable("username") String username) {
-        userService.disableUser(username);
     }
 }

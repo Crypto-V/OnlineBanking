@@ -6,13 +6,10 @@ import java.util.List;
 import com.userfront.domain.Recipient;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.userfront.domain.User;
 import com.userfront.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -47,6 +44,18 @@ public class UserController {
         userService.saveUser(user);
 
         return "profile";
+    }
+
+    @RequestMapping(value = "/{username}/enable", method = RequestMethod.GET)
+    public String enableUser(@PathVariable("username") String username) {
+        userService.enableUser(username);
+        return "redirect:/adminFront";
+    }
+
+    @RequestMapping(value = "/{username}/disable", method = RequestMethod.GET)
+    public String disableUser(@PathVariable("username") String username) {
+        userService.disableUser(username);
+        return "redirect:/adminFront";
     }
 
 

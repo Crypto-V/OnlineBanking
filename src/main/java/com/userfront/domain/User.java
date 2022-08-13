@@ -38,7 +38,7 @@ public class User implements UserDetails{
     private String email;
     private String phone;
 
-    private boolean enabled=true;
+    private boolean enabled = true;
 
     @OneToOne
     private PrimaryAccount primaryAccount;
