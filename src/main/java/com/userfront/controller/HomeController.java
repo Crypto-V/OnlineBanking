@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-	private final UserService userService;
+    private final UserService userService;
     private final RoleDao roleDao;
     private final AppointmentService appointmentService;
 
@@ -33,16 +33,16 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-	public String home() {
-		return "redirect:/index";
-	}
+    public String home() {
+        return "redirect:/index";
+    }
 
-	@RequestMapping("/index")
+    @RequestMapping("/index")
     public String index() {
         return "index";
     }
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
         User user = new User();
 
@@ -51,10 +51,10 @@ public class HomeController {
         return "signup";
     }
 
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signupPost(@ModelAttribute("user") User user,  Model model) {
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String signupPost(@ModelAttribute("user") User user, Model model) {
 
-        if(userService.checkUsernameExists(user.getUsername()) || userService.checkEmailExists(user.getEmail()))  {
+        if (userService.checkUsernameExists(user.getUsername()) || userService.checkEmailExists(user.getEmail())) {
 
             if (userService.checkEmailExists(user.getEmail())) {
                 model.addAttribute("emailExists", true);
@@ -66,8 +66,8 @@ public class HomeController {
 
             return "signup";
         } else {
-        	 Set<UserRole> userRoles = new HashSet<>();
-             userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));
+            Set<UserRole> userRoles = new HashSet<>();
+            userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));
 
             userService.createUser(user, userRoles);
 
@@ -75,8 +75,8 @@ public class HomeController {
         }
     }
 
-	@RequestMapping("/userFront")
-	public String userFront(Principal principal, Model model) {
+    @RequestMapping("/userFront")
+    public String userFront(Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         PrimaryAccount primaryAccount = user.getPrimaryAccount();
         SavingsAccount savingsAccount = user.getSavingsAccount();
@@ -101,7 +101,7 @@ public class HomeController {
     }
 
     @RequestMapping("/adminAppointments")
-    public String appointments( Model model) {
+    public String appointments(Model model) {
 //        User user = userService.findByUsername("vasika");
 
 //        List<User> users = userService.getAllUsers();

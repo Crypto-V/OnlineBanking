@@ -4,8 +4,6 @@ import com.userfront.domain.PrimaryAccount;
 import com.userfront.domain.SavingsAccount;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AccountServiceImplTest {
     PrimaryAccount pAcc;
     SavingsAccount sAcc;
@@ -18,14 +16,5 @@ class AccountServiceImplTest {
     @Test
     void createSavingsAccount() {
         sAcc = new SavingsAccount();
-    }
-
-    @Test
-    void deposit() {
-
-    }
-
-    @Test
-    void withdraw() {
     }
 }

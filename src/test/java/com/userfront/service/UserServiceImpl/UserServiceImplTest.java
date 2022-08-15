@@ -54,8 +54,8 @@ class UserServiceImplTest {
     @Test
     void save() {
         when(userService.createUser(user, userRoles)).thenReturn(user);
-        assertThat(user.getEmail()).isSameAs(user.getEmail());
-        verify(userService, times(1)).createUser(user, userRoles);
+        assertThat(user.getEmail()).isSameAs("johndoe@localhost");
+
     }
 
     @Test

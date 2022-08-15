@@ -6,7 +6,6 @@ import com.userfront.domain.User;
 import com.userfront.domain.security.Role;
 import com.userfront.domain.security.UserRole;
 import com.userfront.service.AppointmentService;
-import com.userfront.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,7 +17,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -62,13 +60,6 @@ class AppointmentServiceImplTest {
         appointment.setLocation("London");
     }
 
-    @Test
-    void createAppointment() {
-    }
-
-    @Test
-    void findAll() {
-    }
 
     @Test
     void findAppointment() {

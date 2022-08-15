@@ -20,7 +20,7 @@ import com.userfront.service.UserService;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 	private final UserDao userDao;
     private final RoleDao roleDao;
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService{
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
     }
-    
-    
+
+
     public User createUser(User user, Set<UserRole> userRoles) {
         User localUser = userDao.findByUsername(user.getUsername());
         String pass = user.getPassword();
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService{
 
         return localUser;
     }
-    
+
     public boolean checkUserExists(String username, String email){
         return checkUsernameExists(username) || checkEmailExists(username);
     }
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService{
     public User saveUser (User user) {
         return userDao.save(user);
     }
-    
+
     public List<User> findUserList() {
         return userDao.findAll();
     }
