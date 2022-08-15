@@ -101,9 +101,9 @@ class UserServiceImplTest {
         assertThat(user.isEnabled()).isEqualTo(false);
     }
 
-    @Test
-    void getAllUsers() {
-        when(userService.getAllUsers()).thenReturn(List.of(user));
-        assertThat(userService.getAllUsers().size()).isEqualTo(1);
-    }
+//    @Test
+//    void getAllUsers() {
+//        when(userService.getAllUsers()).thenReturn(List.of(user));
+//        assertThat(userService.getAllUsers().size()).isEqualTo(1);
+//    }
 }
