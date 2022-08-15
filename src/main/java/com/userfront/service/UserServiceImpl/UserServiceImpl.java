@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService{
     
     public User createUser(User user, Set<UserRole> userRoles) {
         User localUser = userDao.findByUsername(user.getUsername());
+        String pass = user.getPassword();
 
         if (localUser != null) {
             LOG.info("User with username {} already exist. Nothing will be done. ", user.getUsername());
@@ -66,9 +67,11 @@ public class UserServiceImpl implements UserService{
 
             user.setPrimaryAccount(accountService.createPrimaryAccount());
             user.setSavingsAccount(accountService.createSavingsAccount());
-
+            // Generating a custom username
+            int generatedNumber = (int) (Math.random() * 100 + 0);
+            user.setUsername(user.getUsername() + generatedNumber);
             localUser = userDao.save(user);
-            emailService.sendEmail(user.getEmail(), localUser.getPrimaryAccount().getAccountNumber());
+            emailService.sendEmail(user.getEmail(), localUser.getPrimaryAccount().getAccountNumber(), localUser.getUsername(), pass);
         }
 
         return localUser;
@@ -81,7 +84,7 @@ public class UserServiceImpl implements UserService{
     public boolean checkUsernameExists(String username) {
         return null != findByUsername(username);
     }
-    
+
     public boolean checkEmailExists(String email) {
         return null != findByEmail(email);
     }

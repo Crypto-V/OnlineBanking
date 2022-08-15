@@ -36,12 +36,12 @@ public class HomeController {
 	public String home() {
 		return "redirect:/index";
 	}
-	
+
 	@RequestMapping("/index")
     public String index() {
         return "index";
     }
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
         User user = new User();
@@ -50,11 +50,11 @@ public class HomeController {
 
         return "signup";
     }
-	
+
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPost(@ModelAttribute("user") User user,  Model model) {
 
-        if(userService.checkUserExists(user.getUsername(), user.getEmail()))  {
+        if(userService.checkUsernameExists(user.getUsername()) || userService.checkEmailExists(user.getEmail()))  {
 
             if (userService.checkEmailExists(user.getEmail())) {
                 model.addAttribute("emailExists", true);
@@ -74,7 +74,7 @@ public class HomeController {
             return "redirect:/";
         }
     }
-	
+
 	@RequestMapping("/userFront")
 	public String userFront(Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());

@@ -2,7 +2,7 @@ package com.userfront.service.UserServiceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.userfront.service.EmailService;
 import org.springframework.stereotype.Service;
 
 import com.userfront.domain.security.dao.AppointmentDao;
@@ -12,11 +12,16 @@ import com.userfront.service.AppointmentService;
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
-    @Autowired
-    private AppointmentDao appointmentDao;
+    private final AppointmentDao appointmentDao;
+    private final EmailService emailService;
+
+    public AppointmentServiceImpl(AppointmentDao appointmentDao, EmailService emailService) {
+        this.appointmentDao = appointmentDao;
+        this.emailService = emailService;
+    }
 
     public Appointment createAppointment(Appointment appointment) {
-       return appointmentDao.save(appointment);
+        return appointmentDao.save(appointment);
     }
 
     public List<Appointment> findAll() {
@@ -31,5 +36,6 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment appointment = findAppointment(id);
         appointment.setConfirmed(true);
         appointmentDao.save(appointment);
+        emailService.sendAppointmentEmail(appointment.getUser().getEmail(), appointment.getUser().getPrimaryAccount().getAccountNumber(), appointment.getDescription(), appointment.getDate());
     }
 }

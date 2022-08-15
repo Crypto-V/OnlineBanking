@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.validation.constraints.Pattern;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,13 +24,24 @@ import com.userfront.domain.security.Auth;
 import com.userfront.domain.security.UserRole;
 
 @Entity
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userId", nullable = false, updatable = false)
     private Long userId;
     private String username;
+
+    //Pasword pattern:
+    /*
+    * at least one digit
+    * one upper case letter
+    * one lower case letter
+    * one special symbol*/
+    @Pattern(
+            regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})",
+            message = "Wrong Pass Format. Format Example Test123$"
+    )
     private String password;
     private String firstName;
     private String lastName;

@@ -1,4 +1,4 @@
-package com.userfront.resource;
+package com.userfront.rest;
 
 import java.util.List;
 

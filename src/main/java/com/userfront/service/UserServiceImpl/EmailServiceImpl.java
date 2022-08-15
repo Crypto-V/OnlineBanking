@@ -11,6 +11,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Properties;
 
 @Service
@@ -37,7 +39,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendEmail(String to, int accountNumber) {
+    public void sendEmail(String to, int accountNumber, String username, String password) {
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
@@ -53,6 +55,37 @@ public class EmailServiceImpl implements EmailService {
 
             // Now set the actual message
             message.setText("Welcome on Board! dear user\nan account was created for " + to
+                    + "\n" + "with username: " + username
+                    + "\n" + "and password: " + password
+                    + "\n" + "with account number: "
+                    + accountNumber);
+
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendAppointmentEmail(String email, int accountNumber, String description, Date date) {
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+
+            // Set Subject: header field
+            message.setSubject("Congratulations, an appointment was created for online banking");
+
+            // Now set the actual message
+            message.setText("Welcome on Board! dear user\nan appointment was created for " + email
+                    + "\n" + description + " on date: " + date.toString()
                     + "\n" + "with account number: "
                     + accountNumber);
 
