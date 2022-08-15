@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] PUBLIC_MATCHERS = {
+            "/favicon.ico",
+            "/robots.txt",
             "/webjars/**",
             "/css/**",
             "/js/**",
