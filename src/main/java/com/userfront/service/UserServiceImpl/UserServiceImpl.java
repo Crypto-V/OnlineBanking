@@ -115,4 +115,10 @@ public class UserServiceImpl implements UserService{
     public List<User> getAllUsers() {
         return userDao.findAll();
     }
+
+    @Override
+    public boolean isPasswordValid(String password) {
+        String regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})";
+        return password.matches(regexp);
+    }
 }

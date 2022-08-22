@@ -30,4 +30,6 @@ public interface UserService {
     void disableUser (String username);
 
     List<User> getAllUsers();
+
+    boolean isPasswordValid(String password);
 }

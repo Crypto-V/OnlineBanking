@@ -38,10 +38,10 @@ public class User implements UserDetails {
     * one upper case letter
     * one lower case letter
     * one special symbol*/
-    @Pattern(
-            regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})",
-            message = "Wrong Pass Format. Format Example Test123$"
-    )
+//    @Pattern(
+//            regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})",
+//            message = "Wrong Pass Format. Format Example Test123$"
+//    )
     private String password;
     private String firstName;
     private String lastName;

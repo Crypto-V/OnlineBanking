@@ -1,6 +1,5 @@
 package com.userfront.controller;
 
-import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.userfront.domain.security.dao.RoleDao;
 import com.userfront.domain.security.UserRole;
 import com.userfront.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -54,7 +52,7 @@ public class HomeController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupPost(@ModelAttribute("user") User user, Model model) {
 
-        if (userService.checkUsernameExists(user.getUsername()) || userService.checkEmailExists(user.getEmail())) {
+        if (userService.checkUsernameExists(user.getUsername()) || userService.checkEmailExists(user.getEmail()) || userService.isPasswordValid(user.getPassword())) {
 
             if (userService.checkEmailExists(user.getEmail())) {
                 model.addAttribute("emailExists", true);
@@ -62,6 +60,10 @@ public class HomeController {
 
             if (userService.checkUsernameExists(user.getUsername())) {
                 model.addAttribute("usernameExists", true);
+            }
+
+            if(!userService.isPasswordValid(user.getPassword())){
+                model.addAttribute("passwordWrongFormat",true);
             }
 
             return "signup";
