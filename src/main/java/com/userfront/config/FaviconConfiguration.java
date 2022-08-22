@@ -11,16 +11,18 @@ import java.util.Collections;
 @Configuration
 public class FaviconConfiguration {
     @Bean
-    public SimpleUrlHandlerMapping faviconHandlerMapping() {
+    public SimpleUrlHandlerMapping customFaviconHandlerMapping() {
         SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(Integer.MIN_VALUE);
-        mapping.setUrlMap(Collections.singletonMap("/favicon.ico", faviconRequestHandler()));
+        mapping.setUrlMap(Collections.singletonMap(
+                "/static/favicon.ico", faviconRequestHandler()));
         return mapping;
     }
 
     @Bean
     protected ResourceHttpRequestHandler faviconRequestHandler() {
-        ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
+        ResourceHttpRequestHandler requestHandler
+                = new ResourceHttpRequestHandler();
         requestHandler.setLocations(Collections.singletonList(new ClassPathResource("/")));
         return requestHandler;
     }
